@@ -77,11 +77,9 @@ python -m PyInstaller --onefile --windowed --name "PersianToEnglishNumberConvert
 ```
 ---
 
-👨‍💻 Developer | توسعه‌دهنده
-
-WAI490
-
-· GitHub Profile
+## 👨‍💻 Developer | توسعه‌دهنده
+**WAI490**
+- GitHub: [@WAI490](https://github.com/WAI490)
 
 ---
 
