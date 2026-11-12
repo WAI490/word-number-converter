@@ -79,7 +79,7 @@ python -m PyInstaller --onefile --windowed --name "PersianToEnglishNumberConvert
 
 👨‍💻 Developer | توسعه‌دهنده
 
-Your Name / Username
+WAI490
 
 · GitHub Profile
 
