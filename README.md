@@ -54,13 +54,13 @@ Run the Python script from the desired folder:
 برای تبدیل انگلیسی به فارسی:
 
 ```bash
-python word_number_converter_gui.py
+python word_english_to_persian_number_converter_gui.py
 ```
 
 برای تبدیل فارسی به انگلیسی:
 
 ```bash
-python word_to_english_converter_gui.py
+python word_persian_to_english_number_converter_gui.py
 ```
 ---
 
@@ -87,5 +87,4 @@ Your Name / Username
 
 ⭐ If you find this project useful, please give it a star! | اگر این پروژه برایتان مفید بود، به آن ستاره بدهید! ⭐
 
-```
 
