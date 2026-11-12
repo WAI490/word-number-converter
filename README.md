@@ -70,10 +70,10 @@ To create a standalone .exe file using PyInstaller:
 
 ```bash
 # English to Persian
-python -m PyInstaller --onefile --windowed --name "PersianNumberConverter" --hidden-import tkinterdnd2 --collect-all tkinterdnd2 word_number_converter_gui.py
+python -m PyInstaller --onefile --windowed --name "EnglishToPersianNumberConverter" --hidden-import tkinterdnd2 --collect-all tkinterdnd2 word_english_to_persian_number_converter_gui.py
 
 # Persian to English
-python -m PyInstaller --onefile --windowed --name "PersianToEnglishConverter" --hidden-import tkinterdnd2 --collect-all tkinterdnd2 word_to_english_converter_gui.py
+python -m PyInstaller --onefile --windowed --name "PersianToEnglishNumberConverter" --hidden-import tkinterdnd2 --collect-all tkinterdnd2 word_persian_to_english_number_converter_gui.py
 ```
 ---
 
