@@ -31,7 +31,7 @@ word-number-converter/
 │
 ├── .gitignore
 └── README.md
-
+```
 ---
 
 🛠 Requirements | پیش‌نیازها
