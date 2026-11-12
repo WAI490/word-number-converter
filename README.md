@@ -47,13 +47,56 @@ pip install python-docx tkinterdnd2
 ```
 ---
 
-🛠 Requirements | پیش‌نیازها
+🚀 How to Run | نحوه اجرا
 
-· Python 3.7 or higher
-· python-docx
-· tkinterdnd2 (Optional, for Drag & Drop support)
+Run the Python script from the desired folder:
 
-نصب پیش‌نیازها:
+برای تبدیل انگلیسی به فارسی:
 
 ```bash
-pip install python-docx tkinterdnd2
+python word_number_converter_gui.py
+```
+
+برای تبدیل فارسی به انگلیسی:
+
+```bash
+python word_to_english_converter_gui.py
+```
+---
+
+📦 Build EXE | ساخت فایل اجرایی (EXE)
+
+To create a standalone .exe file using PyInstaller:
+
+```bash
+# English to Persian
+python -m PyInstaller --onefile --windowed --name "PersianNumberConverter" --hidden-import tkinterdnd2 --collect-all tkinterdnd2 word_number_converter_gui.py
+
+# Persian to English
+python -m PyInstaller --onefile --windowed --name "PersianToEnglishConverter" --hidden-import tkinterdnd2 --collect-all tkinterdnd2 word_to_english_converter_gui.py
+```
+---
+
+👨‍💻 Developer | توسعه‌دهنده
+
+Your Name / Username
+
+· GitHub Profile
+
+---
+
+⭐ If you find this project useful, please give it a star! | اگر این پروژه برایتان مفید بود، به آن ستاره بدهید! ⭐
+
+```
+
+---
+
+### 📝 روش ذخیره کردن (بسیار مهم):
+1. یک فایل متنی جدید در پوشه `word` بساز (کلیک راست -> New -> Text Document).
+2. متن بالا را داخلش پیست کن.
+3. روی **File** کلیک کن و **Save As** را بزن.
+4. در پنجره باز شده، در قسمت **File name**، نام را دقیقاً به این شکل بنویس (با کوتیشن): **`"README.md"`**
+5. ⚠️ **نکته حیاتی:** درست در پایین همان پنجره، در قسمت **Encoding** (کدگذاری)، حتماً گزینه **UTF-8** را انتخاب کن. (این کار باعث می‌شود حروف فارسی بعد از آپلود در گیت‌هاب به هم نریزند و درست نمایش داده شوند).
+6. دکمه Save را بزن. 
+
+حالا فایل شما آماده است و می‌توانی دستورات گیت را برای آپلود بزنی! 🚀
