@@ -44,3 +44,16 @@ word-number-converter/
 
 ```bash
 pip install python-docx tkinterdnd2
+
+---
+
+🛠 Requirements | پیش‌نیازها
+
+· Python 3.7 or higher
+· python-docx
+· tkinterdnd2 (Optional, for Drag & Drop support)
+
+نصب پیش‌نیازها:
+
+```bash
+pip install python-docx tkinterdnd2
