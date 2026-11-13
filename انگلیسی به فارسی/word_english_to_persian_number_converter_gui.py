@@ -4,24 +4,20 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 from docx import Document
 
-# نگاشت اعداد انگلیسی به فارسی
 PERSIAN_DIGITS = {
     '0': '۰', '1': '۱', '2': '۲', '3': '۳', '4': '۴',
     '5': '۵', '6': '۶', '7': '۷', '8': '۸', '9': '۹'
 }
 
 def convert_to_persian(text):
-    """تبدیل اعداد انگلیسی به فارسی در یک رشته"""
     return ''.join(PERSIAN_DIGITS.get(ch, ch) for ch in text)
 
 def process_paragraph(paragraph):
-    """پردازش پاراگراف با حفظ فرمت اولیه"""
     for run in paragraph.runs:
         if any(c.isdigit() for c in run.text):
             run.text = convert_to_persian(run.text)
 
 def process_table(table):
-    """پردازش جداول (شامل جداول تودرتو)"""
     for row in table.rows:
         for cell in row.cells:
             for paragraph in cell.paragraphs:
@@ -32,15 +28,12 @@ def process_table(table):
 def process_document(input_path, output_path):
     doc = Document(input_path)
 
-    # پردازش پاراگراف‌های اصلی
     for paragraph in doc.paragraphs:
         process_paragraph(paragraph)
 
-    # پردازش جداول
     for table in doc.tables:
         process_table(table)
 
-    # پردازش هدر و فوتر
     for section in doc.sections:
         for header in [section.header, section.first_page_header, section.even_page_header]:
             if header:
@@ -69,11 +62,8 @@ class ConverterApp:
 
         self.input_path = None
         self.use_overwrite = tk.BooleanVar(value=False)
-        
-        # ۱. تعریف متغیر dnd_available در ابتدای کار
         self.dnd_available = False
-        
-        # بررسی و فعال‌سازی Drag & Drop
+
         try:
             from tkinterdnd2 import DND_FILES
             if hasattr(self.root, 'drop_target_register'):
@@ -81,29 +71,25 @@ class ConverterApp:
                 self.root.dnd_bind('<<Drop>>', self._on_drop)
                 self.dnd_available = True
         except Exception:
-            self.dnd_available = False
+            pass
 
-        # ۲. ساخت رابط کاربری
         self._build_ui()
 
     def _build_ui(self):
-        # ---------- عنوان ----------
         title_frame = tk.Frame(self.root, bg="#2c3e50", height=70)
         title_frame.pack(fill="x")
         title_frame.pack_propagate(False)
 
         tk.Label(
             title_frame,
-            text="🔄 تبدیل اعداد انگلیسی به فارسی",
+            text="تبدیل اعداد انگلیسی به فارسی",
             bg="#2c3e50", fg="white",
             font=("Tahoma", 14, "bold")
         ).pack(pady=18)
 
-        # ---------- بدنه اصلی ----------
         main = tk.Frame(self.root, bg="#f5f5f5", padx=20, pady=15)
         main.pack(fill="both", expand=True)
 
-        # انتخاب فایل
         file_frame = tk.LabelFrame(
             main, text=" فایل Word ",
             bg="#f5f5f5", font=("Tahoma", 10, "bold"),
@@ -125,7 +111,7 @@ class ConverterApp:
         btn_row.pack(fill="x")
 
         tk.Button(
-            btn_row, text="📂 انتخاب فایل",
+            btn_row, text="انتخاب فایل",
             command=self.select_file,
             bg="#3498db", fg="white",
             font=("Tahoma", 10, "bold"),
@@ -133,7 +119,7 @@ class ConverterApp:
         ).pack(side="left")
 
         tk.Button(
-            btn_row, text="✖ پاک کردن",
+            btn_row, text="پاک کردن",
             command=self.clear_file,
             bg="#95a5a6", fg="white",
             font=("Tahoma", 10),
@@ -146,7 +132,6 @@ class ConverterApp:
                 bg="#f5f5f5", fg="#888", font=("Tahoma", 8)
             ).pack(side="right")
 
-        # گزینه‌های خروجی
         options_frame = tk.LabelFrame(
             main, text=" تنظیمات خروجی ",
             bg="#f5f5f5", font=("Tahoma", 10, "bold"),
@@ -161,14 +146,13 @@ class ConverterApp:
         ).pack(fill="x")
 
         tk.Radiobutton(
-            options_frame, text="⚠ بازنویسی روی فایل اصلی (پشتیبان بگیرید!)",
+            options_frame, text="بازنویسی روی فایل اصلی (پشتیبان بگیرید!)",
             variable=self.use_overwrite, value=True,
             bg="#f5f5f5", fg="#c0392b", font=("Tahoma", 9), anchor="w"
         ).pack(fill="x")
 
-        # دکمه تبدیل
         self.convert_btn = tk.Button(
-            main, text="🚀 شروع تبدیل",
+            main, text="شروع تبدیل",
             command=self.start_conversion,
             bg="#27ae60", fg="white",
             font=("Tahoma", 12, "bold"),
@@ -177,7 +161,6 @@ class ConverterApp:
         )
         self.convert_btn.pack(fill="x", pady=(0, 10))
 
-        # وضعیت
         self.status_label = tk.Label(
             main, text="آماده",
             bg="#f5f5f5", fg="#555",
@@ -188,7 +171,6 @@ class ConverterApp:
         self.progress = ttk.Progressbar(main, mode="indeterminate")
         self.progress.pack(fill="x", pady=(5, 0))
 
-    # ---------- رویدادها ----------
     def select_file(self):
         path = filedialog.askopenfilename(
             title="انتخاب فایل Word",
@@ -261,7 +243,7 @@ class ConverterApp:
     def _on_success(self, output_path):
         self.progress.stop()
         self.convert_btn.config(state="normal")
-        self.status_label.config(text=f"✅ تبدیل موفق! → {os.path.basename(output_path)}", fg="#27ae60")
+        self.status_label.config(text=f"تبدیل موفق! → {os.path.basename(output_path)}", fg="#27ae60")
         messagebox.showinfo(
             "موفق",
             f"تبدیل با موفقیت انجام شد.\n\nفایل خروجی:\n{output_path}"
@@ -270,16 +252,16 @@ class ConverterApp:
     def _on_error(self, err):
         self.progress.stop()
         self.convert_btn.config(state="normal")
-        self.status_label.config(text="❌ خطا در تبدیل", fg="#c0392b")
+        self.status_label.config(text="خطا در تبدیل", fg="#c0392b")
         messagebox.showerror("خطا", f"عملیات ناموفق بود:\n\n{err}")
 
 
 def main():
     try:
         from tkinterdnd2 import TkinterDnD
-        root = TkinterDnD.Tk()  # پشتیبانی از Drag & Drop
+        root = TkinterDnD.Tk()
     except ImportError:
-        root = tk.Tk()          # اجرای برنامه بدون Drag & Drop
+        root = tk.Tk()
 
     ConverterApp(root)
     root.mainloop()
