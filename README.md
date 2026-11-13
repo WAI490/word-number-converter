@@ -31,3 +31,58 @@ word-number-converter/
 │
 ├── .gitignore
 └── README.md
+```
+---
+
+🛠 Requirements | پیش‌نیازها
+
+· Python 3.7 or higher
+· python-docx
+· tkinterdnd2 (Optional, for Drag & Drop support)
+
+نصب پیش‌نیازها:
+
+```bash
+pip install python-docx tkinterdnd2
+```
+---
+
+🚀 How to Run | نحوه اجرا
+
+Run the Python script from the desired folder:
+
+برای تبدیل انگلیسی به فارسی:
+
+```bash
+python word_english_to_persian_number_converter_gui.py
+```
+
+برای تبدیل فارسی به انگلیسی:
+
+```bash
+python word_persian_to_english_number_converter_gui.py
+```
+---
+
+📦 Build EXE | ساخت فایل اجرایی (EXE)
+
+To create a standalone .exe file using PyInstaller:
+
+```bash
+# English to Persian
+python -m PyInstaller --onefile --windowed --name "EnglishToPersianNumberConverter" --hidden-import tkinterdnd2 --collect-all tkinterdnd2 word_english_to_persian_number_converter_gui.py
+
+# Persian to English
+python -m PyInstaller --onefile --windowed --name "PersianToEnglishNumberConverter" --hidden-import tkinterdnd2 --collect-all tkinterdnd2 word_persian_to_english_number_converter_gui.py
+```
+---
+
+👨‍💻 Developer | توسعه‌دهنده
+
+- GitHub: [@WAI490](https://github.com/WAI490)
+
+---
+
+⭐ If you find this project useful, please give it a star! | اگر این پروژه برایتان مفید بود، به آن ستاره بدهید! ⭐
+
+
