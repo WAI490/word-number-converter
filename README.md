@@ -1,88 +1,112 @@
 # 🔄 Word Number Converter | مبدل اعداد ورد
 
-A Python GUI application to convert English digits to Persian and vice versa in Microsoft Word (`.docx`) files while preserving the original formatting.
+**Version 1.1.0**
 
-یک ابزار گرافیکی (GUI) کاربردی با پایتون برای تبدیل اعداد انگلیسی به فارسی و بالعکس در فایل‌های مایکروسافت ورد (`.docx`) با حفظ کامل فرمت.
+A Python GUI application to convert English digits to Persian and vice
+versa in Microsoft Word (`.docx`) files while preserving the original
+formatting.
+
+یک ابزار گرافیکی (GUI) با پایتون برای تبدیل اعداد انگلیسی به فارسی و
+بالعکس در فایل‌های مایکروسافت ورد (`.docx`) با حفظ کامل فرمت.
 
 ---
 
 ## ✨ Features | امکانات
-- **Bidirectional Conversion | تبدیل دوطرفه:** Convert English digits to Persian and Persian/Arabic digits to English.
-- **Format Preservation | حفظ فرمت:** Fonts, colors, boldness, and other styles remain completely intact.
-- **Tables Support | پشتیبانی از جداول:** Converts numbers inside tables, including nested tables.
-- **Headers & Footers | هدر و فوتر:** Processes numbers in all parts of the document (paragraphs, tables, headers, footers).
-- **Modern GUI | رابط کاربری مدرن:** Built with Tkinter with a clean and user-friendly interface.
-- **Drag & Drop | کشیدن و رها کردن:** Drop your file directly into the app (requires `tkinterdnd2`).
-- **Safe Output | خروجی امن:** Creates a new file with `_persian` or `_english` suffix without modifying the original file.
+
+- **Bidirectional Conversion | تبدیل دوطرفه:** One application with a
+  direction selector — English digits to Persian, and Persian/Arabic
+  digits to English.
+- **Format Preservation | حفظ فرمت:** Only the text of each run is
+  changed, so fonts, colors, boldness and other styles remain intact.
+- **Tables Support | پشتیبانی از جداول:** Converts numbers inside
+  tables, including nested tables.
+- **Headers & Footers | هدر و فوتر:** Default, first-page and
+  even-page headers and footers are processed.
+- **Text Boxes | جعبه‌های متن:** Numbers inside text boxes are
+  converted too, as are footnotes, endnotes and comments when the
+  document has them.
+- **Drag & Drop | کشیدن و رها کردن:** Drop your file directly into
+  the app (requires `tkinterdnd2`; the app works without it too).
+- **Safe Output | خروجی امن:** By default creates a new file with a
+  `_persian` or `_english` suffix without modifying the original file.
+  Overwriting the original is possible but always asks for
+  confirmation first.
+
+### What is *not* converted | چه چیزهایی تبدیل نمی‌شوند
+
+- Field results that Word generates itself, such as automatic page
+  numbers and tables of contents.
+- Digits inside embedded objects or images.
 
 ---
 
 ## 📂 Project Structure | ساختار پروژه
-This repository contains two separate GUI applications:
 
-```text
+```
 word-number-converter/
 │
-├── انگلیسی به فارسی/         # English to Persian converter
-│   └── word_number_converter_gui.py
-│
-├── فارسی به انگلیسی/         # Persian to English converter
-│   └── word_to_english_converter_gui.py
-│
+├── converter.py                  # Shared conversion core (both directions, no GUI)
+├── word_number_converter_gui.py  # The single GUI application
+├── requirements.txt
+├── tests/
+│   └── test_converter.py
 ├── .gitignore
+├── LICENSE
 └── README.md
 ```
+
 ---
 
-🛠 Requirements | پیش‌نیازها
+## 🛠 Requirements | پیش‌نیازها
 
-· Python 3.7 or higher
-· python-docx
-· tkinterdnd2 (Optional, for Drag & Drop support)
+- Python 3.9 or higher
+- Packages listed in `requirements.txt`
 
 نصب پیش‌نیازها:
 
-```bash
-pip install python-docx tkinterdnd2
 ```
+pip install -r requirements.txt
+```
+
 ---
 
-🚀 How to Run | نحوه اجرا
+## 🚀 How to Run | نحوه اجرا
 
-Run the Python script from the desired folder:
-
-برای تبدیل انگلیسی به فارسی:
-
-```bash
-python word_english_to_persian_number_converter_gui.py
+```
+python word_number_converter_gui.py
 ```
 
-برای تبدیل فارسی به انگلیسی:
+Then choose the conversion direction inside the app
+(English → Persian or Persian → English), pick your `.docx` file and
+press «شروع تبدیل».
 
-```bash
-python word_persian_to_english_number_converter_gui.py
-```
+برای اجرا کافی است دستور بالا را بزنید و جهت تبدیل را داخل خود
+برنامه انتخاب کنید.
+
 ---
 
-📦 Build EXE | ساخت فایل اجرایی (EXE)
+## 🧪 Tests | تست‌ها
+
+```
+python -m unittest discover -s tests -v
+```
+
+---
+
+## 📦 Build EXE | ساخت فایل اجرایی (EXE)
 
 To create a standalone .exe file using PyInstaller:
 
-```bash
-# English to Persian
-python -m PyInstaller --onefile --windowed --name "EnglishToPersianNumberConverter" --hidden-import tkinterdnd2 --collect-all tkinterdnd2 word_english_to_persian_number_converter_gui.py
-
-# Persian to English
-python -m PyInstaller --onefile --windowed --name "PersianToEnglishNumberConverter" --hidden-import tkinterdnd2 --collect-all tkinterdnd2 word_persian_to_english_number_converter_gui.py
 ```
+python -m PyInstaller --onefile --windowed --name "WordNumberConverter" --hidden-import tkinterdnd2 --collect-all tkinterdnd2 word_number_converter_gui.py
+```
+
 ---
 
-👨‍💻 Developer | توسعه‌دهنده
+## 👨‍💻 Developer | توسعه‌دهنده
 
-- GitHub: [@WAI490](https://github.com/WAI490)
+- GitHub: @WAI490
 
 ---
 
 ⭐ If you find this project useful, please give it a star! | اگر این پروژه برایتان مفید بود، به آن ستاره بدهید! ⭐
-
-
